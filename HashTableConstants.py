@@ -1,6 +1,6 @@
-class HashTableConstants:
+class HashTableConstant:
 
-    def __init__(self, size=3):
+    def __init__(self, size=5):
         self.size = size
         self.hash_table = self.create_entries()
         self.index_count = -1
@@ -11,7 +11,7 @@ class HashTableConstants:
     def hash_function(self, constant):
         return constant % self.size
 
-    def add(self, constant):
+    def add_constant(self, constant):
 
         if self.search_identifier(constant):
             return
@@ -34,14 +34,20 @@ class HashTableConstants:
                 return True
         return False
 
-# l = [(-1, [12]) for _ in range(12)]
-#
-# h = HashTableConstants()
-# h.add(12)
-# h.add(168)
-# h.add(15)
-# h.add(16)
-# h.add(19)
-# h.add(18)
-# h.add(17)
-# print(h.hash_table)
+    def get_hashtable_constants(self):
+        return self.hash_table
+
+
+l = [(-1, [12]) for _ in range(12)]
+
+h = HashTableConstant()
+h.add_constant(12)
+h.add_constant(168)
+h.add_constant(15)
+h.add_constant(16)
+h.add_constant(19)
+h.add_constant(18)
+h.add_constant(17)
+
+for i in range(len(h.hash_table)):
+    print(i, "->", h.hash_table[i])
