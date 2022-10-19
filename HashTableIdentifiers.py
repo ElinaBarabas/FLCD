@@ -1,12 +1,12 @@
 class HashTableIdentifier:
 
-    def __init__(self, size=10):
+    def __init__(self, size=3):
         self.size = size
         self.hash_table = self.create_entries()
         self.index_count = -1
 
     def create_entries(self):
-        return [[-1, ""] for _ in range(self.size)]
+        return [None for _ in range(self.size)]
 
     def hash_function(self, identifier):
         list_of_chars = [x for x in identifier]
@@ -16,29 +16,39 @@ class HashTableIdentifier:
         return sum_chars % self.size
 
     def add(self, identifier):
+
         if self.search_identifier(identifier):
             return
-
         result = self.hash_function(identifier)
-        self.hash_table[result][0] = identifier
         self.index_count += 1
-        self.hash_table[result][1] = self.index_count
+        key_value_pair = (identifier, self.index_count)
+        if self.hash_table[result] is None:
+            self.hash_table[result] = []
+            self.hash_table[result].append(key_value_pair)
+        else:
+            self.hash_table[result].append(key_value_pair)
 
     def search_identifier(self, identifier):
 
         result = self.hash_function(identifier)
-        if self.hash_table[result][0] == -1:
+        if self.hash_table[result] is None:
             return False
-        return True
+        for key_value_pairs in self.hash_table[result]:
+            if key_value_pairs[0] == identifier:
+                return True
+        return False
 
 
 l = [(-1, [12]) for _ in range(12)]
 
 h = HashTableIdentifier()
 h.add("a")
+h.add("ba")
+h.add("ab")
 h.add("ab")
 h.add("bbf")
 h.add("f_f")
 h.add("q~f")
+h.add("ab")
 
 print(h.hash_table)
