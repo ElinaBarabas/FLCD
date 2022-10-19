@@ -1,6 +1,6 @@
 class HashTableIdentifier:
 
-    def __init__(self, size=3):
+    def __init__(self, size=5):
         self.size = size
         self.hash_table = self.create_entries()
         self.index_count = -1
@@ -15,7 +15,7 @@ class HashTableIdentifier:
             sum_chars += ord(character)
         return sum_chars % self.size
 
-    def add(self, identifier):
+    def add_identifier(self, identifier):
 
         if self.search_identifier(identifier):
             return
@@ -38,17 +38,21 @@ class HashTableIdentifier:
                 return True
         return False
 
+    def get_hashtable_identifiers(self):
+        return self.hash_table
+
 
 l = [(-1, [12]) for _ in range(12)]
 
 h = HashTableIdentifier()
-h.add("a")
-h.add("ba")
-h.add("ab")
-h.add("ab")
-h.add("bbf")
-h.add("f_f")
-h.add("q~f")
-h.add("ab")
+h.add_identifier("a")
+h.add_identifier("ba")
+h.add_identifier("ab")
+h.add_identifier("ab")
+h.add_identifier("bbf")
+h.add_identifier("f_f")
+h.add_identifier("q~f")
+h.add_identifier("ab")
 
-print(h.hash_table)
+for i in range(len(h.hash_table)):
+    print(i, "->", h.hash_table[i])
