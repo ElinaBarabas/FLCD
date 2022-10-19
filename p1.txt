@@ -1,0 +1,4 @@
+a = 16.
+b = 21.
+
+PRINT ( " The product of: " , INT ( a ) ,  " and: " , INT ( b ) , " is: " , INT ( a * b ) ) .
