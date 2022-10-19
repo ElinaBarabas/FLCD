@@ -1,4 +1,4 @@
-from flcd.FLCD.HashTableIdentifiers import HashTable
+from flcd.FLCD.HashTable import HashTable
 
 
 class SymbolTable:

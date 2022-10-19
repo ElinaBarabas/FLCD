@@ -1,0 +1,31 @@
+Symbol Table (ST) implementation using Hash Table:
+
+    For the constants and identifiers we will use two different ST, as specified in the assignment.
+    We will have the same hash function (sum of ascii codes % the size of the hash table), because constants can be
+    strings too. In this case, it is easier to build two separate hash tables, based on the same idea.
+    For each key in the hash table, we will have a unique value, which will act as an identifier for the given
+    constant/identifier.
+
+    create_entries(self) - we will create the hash table with m - "None" values for the initialization part, where m
+    is the size of the hash table.
+
+    hash_function(self, key) - the key will represent in our case an identifier or a constant; for this key, we will compute
+    the sum of the ascii codes (both for strings/integers) and for it, we will have the sum modulo m as the returned result;
+
+    add_key(self, key) - firstly, we need to check if the given key as parameter is already in the ST;
+    if present, we don't have to add it again; otherwise, we need to compute where to place it in the hash table;
+    for adding, we use a tuple in which we will find the given key with a unique value associated to it.
+
+    search_key(self, key) - this function returns a boolean by computing the hash function for the given parameter; after, it checks if the
+    current result is None (which means that the key has not been added yet in the hash table) or not (the key is already in the hash table);
+
+    get_hashtable(self) - it returns the hash table itself
+
+    populate_token_list(self) - based on the "token.txt", we will extract in a list, characters and keywords that must not be taken into account
+    as constant/identifier
+
+    count_tokens(self) - this function returns the number of tokens from "token.txt"
+
+    check_if_const_integer(self, elem) - this function checks if the current elem is associated as an integer or as string to an identifier
+
+    print_hash_tables(self) - this function lists the hash tables for the constants/identifiers of the current file (problem)
