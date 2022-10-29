@@ -1,3 +1,4 @@
+p3.txt is lexical correct
 The Symbol Table for identifiers: 
 
 0 -> [('n', 0), ('i', 4)]

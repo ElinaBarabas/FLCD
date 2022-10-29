@@ -122,6 +122,8 @@ class SymbolTable:
 
         if self.error_value == 1:
             print(self.filename + " is lexical correct")
+            f.write(self.filename + " is lexical correct\n")
+
 
         f.write("The Symbol Table for identifiers: \n")
         f.write("\n")
@@ -146,7 +148,7 @@ class SymbolTable:
 
         filename2 = self.filename + "_PIF.txt"
 
-        f1 = open(filename2, "w")
+        f1 = open(filename2, "a")
         f1.write("The Program Internal Form is: \n\n")
         for i in range(len(self.pif_form)):
             line = self.pif_form[i]
@@ -197,7 +199,11 @@ class SymbolTable:
             if not character.isalnum():
                 if character not in self.token_list:
                     self.error_value = 0
-                    print("Lexical error in " + self.filename + " at line", self.line_number, "(", elem, ")")
+                    filename2 = self.filename + "_PIF.txt"
+                    f1 = open(filename2, "a")
+                    f1.write("Lexical error in " + self.filename + " at line" + str(self.line_number) + "(" + str(elem) + ")\n\n")
+                    print("Lexical error in " + self.filename + " at line", self.line_number, "(", elem, ")\n")
+                    f1.close()
                     return False
         return True
 
