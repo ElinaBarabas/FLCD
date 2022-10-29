@@ -20,8 +20,9 @@ class HashTable:
 
     def add_key(self, key):
 
-        if self.search_key(key):
+        if self.search_key(key) or key == " " or len(str(key)) == 0:
             return
+
         result = self.hash_function(key)
         self.index_count += 1
         key_value_pair = (key, self.index_count)
@@ -37,9 +38,28 @@ class HashTable:
         if self.hash_table[result] is None:
             return False
         for key_value_pairs in self.hash_table[result]:
-            if key_value_pairs[0] == key:
+            try:
+                converted_key = int(key)
+            except ValueError:
+                converted_key = str(key)
+            if key_value_pairs[0] == converted_key:
                 return True
         return False
+
+    def retrieve_value(self, key):
+
+        if not self.search_key(key):
+            return None
+        else:
+            result = self.hash_function(key)
+            try:
+                converted_key = int(key)
+            except ValueError:
+                converted_key = str(key)
+            for key_value_pairs in self.hash_table[result]:
+                if key_value_pairs[0] == converted_key:
+                    return key_value_pairs[1]
+
 
     def get_hashtable(self):
         return self.hash_table

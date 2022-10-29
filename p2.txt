@@ -1,16 +1,16 @@
 n = INT ( INPUT ( " Enter a number: " ) ) .
-isPrime = 1.
-c = 2.
+isPrime = 1 .
+c = 2 .
 
 IF n > 1:
     WHILE c < n:
         IF n % c == 0:
-            isPrime = 0.
+            isPrime = 0 .
             BREAK.
         ELSE:
-            c = c + 1.
+            c = c + 1 .
 
 IF isPrime == 1:
-    PRINT ( INT ( n ) , " is a prime number " ).
+    PRINT ( INT ( n ) , " is a prime number " ) .
 ELSE:
-    PRINT ( INT ( n ) , " is not a prime number " ).
+    PRINT ( INT ( n ) , " is not a prime number " ) .
