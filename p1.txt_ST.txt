@@ -1,0 +1,15 @@
+The Symbol Table for identifiers: 
+
+0 -> None
+1 -> None
+2 -> [('a', 0)]
+3 -> [('b', 1)]
+4 -> None
+
+The Symbol Table for constants: 
+
+0 -> [('"and: "', 3)]
+1 -> None
+2 -> None
+3 -> [(16, 0), ('"The product of: "', 2), ('"is: "', 4)]
+4 -> [(21, 1)]

@@ -1,0 +1,15 @@
+The Symbol Table for identifiers: 
+
+0 -> [('n', 0)]
+1 -> None
+2 -> None
+3 -> None
+4 -> [('isPrime', 1), ('c', 2)]
+
+The Symbol Table for constants: 
+
+0 -> [(2, 2)]
+1 -> None
+2 -> [('"is not a prime number "', 5)]
+3 -> [('"Enter a number: "', 0), (0, 3), ('"is a prime number "', 4)]
+4 -> [(1, 1)]

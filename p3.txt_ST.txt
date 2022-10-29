@@ -1,0 +1,15 @@
+The Symbol Table for identifiers: 
+
+0 -> [('n', 0), ('i', 4)]
+1 -> [('j', 2)]
+2 -> [('myList', 1)]
+3 -> [('counter', 3), ('n:', 5), ('currentNumber', 6)]
+4 -> None
+
+The Symbol Table for constants: 
+
+0 -> [('"Enter the number of elements less than 20: "', 2)]
+1 -> None
+2 -> [('"a "', 0)]
+3 -> [(0, 1), (5, 5)]
+4 -> [(1, 3), ('"The number of elements divisible by 5: "', 4)]

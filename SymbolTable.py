@@ -22,7 +22,7 @@ class SymbolTable:
         self.identify_tokens()
         self.identify_line_components()
         #
-        self.print_hash_tables()
+        self.write_output_in_files()
 
     def identify_tokens(self):
         fp = open("token.txt")
@@ -115,34 +115,50 @@ class SymbolTable:
             if elem not in self.token_list and not self.check_if_const_integer(elem) and not elem.__contains__('"'):
                 self.hashtable_identifiers.add_key(elem)
 
-    def print_hash_tables(self):
+    def write_output_in_files(self):
 
-        if self.error_value == 0:
-            return
+        filename = self.filename + "_ST.txt"
+        f = open(filename, "w")
 
-        else:
-            print("\n" + self.filename + " is lexical correct")
+        if self.error_value == 1:
+            print(self.filename + " is lexical correct")
 
-        print("\nThe Symbol Table for identifiers: \n")
+        f.write("The Symbol Table for identifiers: \n")
+        f.write("\n")
+
         identifiers = self.hashtable_identifiers.get_hashtable()
+
         for i in range(len(identifiers)):
-            print(i, "->", identifiers[i])
 
-        print("\nThe Symbol Table for constants: \n")
+            line = str(i) + " -> " + str(identifiers[i]) + "\n"
+            f.write(line)
+
+        f.write("\nThe Symbol Table for constants: \n")
+        f.write("\n")
+
         constants = self.hashtable_constants.get_hashtable()
-        for i in range(len(constants)):
-            print(i, "->", constants[i])
 
-        print("\nThe Program Internal Form is: \n")
-        print(self.pif_form)
+        for i in range(len(constants)):
+            line = str(i) + " -> " + str(constants[i]) + "\n"
+            f.write(line)
+
+        f.close()
+
+        filename2 = self.filename + "_PIF.txt"
+
+        f1 = open(filename2, "w")
+        f1.write("The Program Internal Form is: \n\n")
+        for i in range(len(self.pif_form)):
+            line = self.pif_form[i]
+            f1.write(str(line) + "\n")
+        f1.close()
 
     def create_pif_table(self, components_of_line):
 
         for elem in components_of_line:
 
-            self.check_elem(elem)
-            if self.error_value == 0:
-                return
+            if not self.check_elem(elem):
+                break
 
             if elem == '"' and self.string_flag == 0:
                 self.string_flag = 1
@@ -174,7 +190,6 @@ class SymbolTable:
                 pif_token = (elem, self.tokens_identifiers_constants[elem], -1)
                 self.pif_form.append(pif_token)
 
-
     def check_elem(self, elem):
         list_of_chars = [x for x in elem]
         for character in list_of_chars:
@@ -182,21 +197,30 @@ class SymbolTable:
             if not character.isalnum():
                 if character not in self.token_list:
                     self.error_value = 0
-                    print("Lexical error at line", self.line_number, "(", elem, ")")
+                    print("Lexical error in " + self.filename + " at line", self.line_number, "(", elem, ")")
+                    return False
+        return True
 
 
-# hashtable_constants_p1 = HashTable()
-# hashtable_identifiers_p1 = HashTable()
-# symbol_table_p1 = SymbolTable(hashtable_constants_p1, hashtable_identifiers_p1, "p1.txt")
-#
-# print("----------------------------------------------------------------------------------------------------")
-#
-# hashtable_constants_p2 = HashTable()
-# hashtable_identifiers_p2 = HashTable()
-# symbol_table_p2 = SymbolTable(hashtable_constants_p2, hashtable_identifiers_p2, "p2.txt")
-#
-# print("----------------------------------------------------------------------------------------------------")
+hashtable_constants_p1 = HashTable()
+hashtable_identifiers_p1 = HashTable()
+symbol_table_p1 = SymbolTable(hashtable_constants_p1, hashtable_identifiers_p1, "p1.txt")
+
+print("----------------------------------------------------------------------------------------------------")
+
+hashtable_constants_p2 = HashTable()
+hashtable_identifiers_p2 = HashTable()
+symbol_table_p2 = SymbolTable(hashtable_constants_p2, hashtable_identifiers_p2, "p2.txt")
+
+print("----------------------------------------------------------------------------------------------------")
 
 hashtable_constants_p3 = HashTable()
 hashtable_identifiers_p3 = HashTable()
 symbol_table_p3 = SymbolTable(hashtable_constants_p3, hashtable_identifiers_p3, "p3.txt")
+
+
+print("----------------------------------------------------------------------------------------------------")
+
+hashtable_constants_p3 = HashTable()
+hashtable_identifiers_p3 = HashTable()
+symbol_table_p3 = SymbolTable(hashtable_constants_p3, hashtable_identifiers_p3, "pE.txt")
