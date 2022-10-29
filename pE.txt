@@ -1,7 +1,7 @@
-a = 16.
+a = 16 .
 
-b = INT ( 2$1 ).
+b = INT ( 2$1 ) .
 
-c = a * b.
+c = a * b .
 
-PRINT ( " The product of: " , INT ( a ) ,  " and: " ,  INT ( b ) ,  " is: " , INT ( @ ) ).
+PRINT ( " The product of: " , INT ( a ) ,  " and: " ,  INT ( b ) ,  " is: " , INT ( @ ) ) .

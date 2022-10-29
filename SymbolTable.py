@@ -9,6 +9,8 @@ class SymbolTable:
         self.pif_form = []
         self.create_string = ""
         self.string_flag = 0
+        self.line_number = 0
+        self.error_value = 1
 
         self.tokens_identifiers_constants = {}
 
@@ -41,7 +43,7 @@ class SymbolTable:
             self.tokens_identifiers_constants[token] = token_id
             token_id += 1
 
-        print(self.tokens_identifiers_constants)
+        # print(self.tokens_identifiers_constants)
         fp.close()
 
     @staticmethod
@@ -63,9 +65,12 @@ class SymbolTable:
 
         lines = fp.readlines()
         for line in lines:
-            components_of_line = line.split(' ')
+            components_of_line = line.strip()
+            components_of_line = components_of_line.split(' ')
             self.create_hashtable_identifiers(components_of_line)
+            self.line_number += 1
             self.create_pif_table(components_of_line)
+
         fp.close()
 
     def append_without_new_line(self, elem):
@@ -112,7 +117,12 @@ class SymbolTable:
 
     def print_hash_tables(self):
 
-        print(self.filename)
+        if self.error_value == 0:
+            return
+
+        else:
+            print("\n" + self.filename + " is lexical correct")
+
         print("\nThe Symbol Table for identifiers: \n")
         identifiers = self.hashtable_identifiers.get_hashtable()
         for i in range(len(identifiers)):
@@ -129,6 +139,10 @@ class SymbolTable:
     def create_pif_table(self, components_of_line):
 
         for elem in components_of_line:
+
+            self.check_elem(elem)
+            if self.error_value == 0:
+                return
 
             if elem == '"' and self.string_flag == 0:
                 self.string_flag = 1
@@ -161,6 +175,16 @@ class SymbolTable:
                 self.pif_form.append(pif_token)
 
 
+    def check_elem(self, elem):
+        list_of_chars = [x for x in elem]
+        for character in list_of_chars:
+            character = character.strip()
+            if not character.isalnum():
+                if character not in self.token_list:
+                    self.error_value = 0
+                    print("Lexical error at line", self.line_number, "(", elem, ")")
+
+
 # hashtable_constants_p1 = HashTable()
 # hashtable_identifiers_p1 = HashTable()
 # symbol_table_p1 = SymbolTable(hashtable_constants_p1, hashtable_identifiers_p1, "p1.txt")
@@ -175,4 +199,4 @@ class SymbolTable:
 
 hashtable_constants_p3 = HashTable()
 hashtable_identifiers_p3 = HashTable()
-symbol_table_p3 = SymbolTable(hashtable_constants_p3, hashtable_identifiers_p3, "p2.txt")
+symbol_table_p3 = SymbolTable(hashtable_constants_p3, hashtable_identifiers_p3, "p3.txt")
