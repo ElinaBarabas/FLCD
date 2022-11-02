@@ -227,6 +227,6 @@ symbol_table_p3 = SymbolTable(hashtable_constants_p3, hashtable_identifiers_p3, 
 
 print("----------------------------------------------------------------------------------------------------")
 
-hashtable_constants_p3 = HashTable()
-hashtable_identifiers_p3 = HashTable()
-symbol_table_p3 = SymbolTable(hashtable_constants_p3, hashtable_identifiers_p3, "pE.txt")
+hashtable_constants_p4 = HashTable()
+hashtable_identifiers_p4 = HashTable()
+symbol_table_p4 = SymbolTable(hashtable_constants_p3, hashtable_identifiers_p3, "pE.txt")

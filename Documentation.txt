@@ -1,6 +1,6 @@
 https://github.com/ElinaBarabas/FLCD
 
-Symbol Table (ST) implementation using Hash Table:
+HashTable.py
 
     For the constants and identifiers we will use two different ST, as specified in the assignment.
     We will have the same hash function (sum of ascii codes % the size of the hash table), because constants can be
@@ -31,3 +31,30 @@ Symbol Table (ST) implementation using Hash Table:
     check_if_const_integer(self, elem) - this function checks if the current elem is associated as an integer or as string to an identifier
 
     print_hash_tables(self) - this function lists the hash tables for the constants/identifiers of the current file (problem)
+
+    retrieve_value(self,key) - this function returns the unique value associated to the key (constant/identifier) from the Symbol Table
+
+    search_key(self,key) - this function checks if a key appears in the ST or not
+
+    get_hashtable(self) - it returns the ST
+
+SymbolTable.py
+
+    identify_tokens(self) - it reads from token.in and creates an entry with an unique value associated for each available token; besides that, it sets value "0" for every constant and "1"
+    for every identifier that will appear in the Program Internal Form
+
+    count_tokens(self) - it returns the number of available tokens (from token.in)
+
+    check_if_const_integer(elem) - we need to distinguish the integer constants from the string ones; this function checks if the given element is an integer or not
+
+    identify_line_components(self) - this function splits the given program based on spaces, and it creates entries for each element on the line in the pif table
+
+    append_without_new_line(self, elem) - it identifies the unnecessary "\n" and it appends the last elements from the program's lines without it
+
+    create_hashtable_identifiers(self, components_of_line) - it decides how line's components should be grouped and in which Symbol Table they should be added
+
+     write_output_in_files(self) - based on the input problem, it creates output files which contains the STs, PIF and eventually lexical errors
+
+     create_pif_table(self, components_of_line) - it adds, in order, each line's component with an associated id, based on component's type (token/identifier/constant)
+
+     check_elem(self, elem) - for each elem, it checks if it is correctly, from a lexical point of view; if it is not correct, it retrieves the line number where the error occurs
