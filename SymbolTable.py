@@ -1,3 +1,4 @@
+from flcd.FLCD.FiniteAutomata import FiniteAutomata
 from flcd.FLCD.HashTable import HashTable
 
 
@@ -17,6 +18,10 @@ class SymbolTable:
         self.hashtable_constants = hashtable_constants
         self.hashtable_identifiers = hashtable_identifiers
         self.filename = filename
+
+        self.finiteAutomataConstants = FiniteAutomata("finite_automata_for_constants.txt")
+        self.finiteAutomataIdentifiers = FiniteAutomata("finite_automata_for_identifiers.txt")
+
 
         self.number_of_tokens = self.count_tokens()
         self.identify_tokens()
@@ -51,14 +56,12 @@ class SymbolTable:
         fp = open("token.txt")
         return len(fp.readlines())
 
-    @staticmethod
-    def check_if_const_integer(elem):
-        try:
-            int(elem)
-            ok = True
-        except ValueError:
-            ok = False
-        return ok
+
+    def check_if_valid_const_integer(self, elem):
+        return self.finiteAutomataConstants.checkSequence(elem)
+
+    def check_if_valid_identifier(self, elem):
+        return self.finiteAutomataIdentifiers.checkSequence(elem)
 
     def identify_line_components(self):
         fp = open(self.filename)
@@ -106,13 +109,13 @@ class SymbolTable:
                     self.append_without_new_line(elem)
 
         for elem in self.filtered_list:
-            if self.check_if_const_integer(elem):
+            if self.check_if_valid_const_integer(elem):
                 self.hashtable_constants.add_key(int(elem))
 
             if elem.__contains__('"'):
                 self.hashtable_constants.add_key(elem)
 
-            if elem not in self.token_list and not self.check_if_const_integer(elem) and not elem.__contains__('"'):
+            if elem not in self.token_list and self.check_if_valid_identifier(elem) and not elem.__contains__('"'):
                 self.hashtable_identifiers.add_key(elem)
 
     def write_output_in_files(self):
@@ -207,26 +210,26 @@ class SymbolTable:
                     return False
         return True
 
-
-hashtable_constants_p1 = HashTable()
-hashtable_identifiers_p1 = HashTable()
-symbol_table_p1 = SymbolTable(hashtable_constants_p1, hashtable_identifiers_p1, "p1.txt")
-
-print("----------------------------------------------------------------------------------------------------")
-
-hashtable_constants_p2 = HashTable()
-hashtable_identifiers_p2 = HashTable()
-symbol_table_p2 = SymbolTable(hashtable_constants_p2, hashtable_identifiers_p2, "p2.txt")
-
-print("----------------------------------------------------------------------------------------------------")
-
-hashtable_constants_p3 = HashTable()
-hashtable_identifiers_p3 = HashTable()
-symbol_table_p3 = SymbolTable(hashtable_constants_p3, hashtable_identifiers_p3, "p3.txt")
-
-
-print("----------------------------------------------------------------------------------------------------")
+#
+# hashtable_constants_p1 = HashTable()
+# hashtable_identifiers_p1 = HashTable()
+# symbol_table_p1 = SymbolTable(hashtable_constants_p1, hashtable_identifiers_p1, "p1.txt")
+#
+# print("----------------------------------------------------------------------------------------------------")
+#
+# hashtable_constants_p2 = HashTable()
+# hashtable_identifiers_p2 = HashTable()
+# symbol_table_p2 = SymbolTable(hashtable_constants_p2, hashtable_identifiers_p2, "p2.txt")
+#
+# print("----------------------------------------------------------------------------------------------------")
+#
+# hashtable_constants_p3 = HashTable()
+# hashtable_identifiers_p3 = HashTable()
+# symbol_table_p3 = SymbolTable(hashtable_constants_p3, hashtable_identifiers_p3, "p3.txt")
+#
+#
+# print("----------------------------------------------------------------------------------------------------")
 
 hashtable_constants_p4 = HashTable()
 hashtable_identifiers_p4 = HashTable()
-symbol_table_p4 = SymbolTable(hashtable_constants_p3, hashtable_identifiers_p3, "pE.txt")
+symbol_table_p4 = SymbolTable(hashtable_constants_p4, hashtable_identifiers_p4, "pE.txt")

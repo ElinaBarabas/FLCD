@@ -1,3 +1,6 @@
+from flcd.FLCD.FiniteAutomata import FiniteAutomata
+
+
 class HashTable:
 
     def __init__(self, size=5):
