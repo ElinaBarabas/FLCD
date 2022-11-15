@@ -4,7 +4,7 @@ The Symbol Table for identifiers:
 0 -> [('n', 0), ('i', 4)]
 1 -> [('j', 2)]
 2 -> [('myList', 1)]
-3 -> [('counter', 3), ('n:', 5), ('currentNumber', 6)]
+3 -> [('counter', 3), ('currentNumber', 5)]
 4 -> None
 
 The Symbol Table for constants: 

@@ -22,12 +22,13 @@ class SymbolTable:
         self.finiteAutomataConstants = FiniteAutomata("finite_automata_for_constants.txt")
         self.finiteAutomataIdentifiers = FiniteAutomata("finite_automata_for_identifiers.txt")
 
-
         self.number_of_tokens = self.count_tokens()
         self.identify_tokens()
         self.identify_line_components()
         #
         self.write_output_in_files()
+
+        self.print_menu()
 
     def identify_tokens(self):
         fp = open("token.txt")
@@ -55,7 +56,6 @@ class SymbolTable:
     def count_tokens():
         fp = open("token.txt")
         return len(fp.readlines())
-
 
     def check_if_valid_const_integer(self, elem):
         return self.finiteAutomataConstants.checkSequence(elem)
@@ -127,14 +127,12 @@ class SymbolTable:
             print(self.filename + " is lexical correct")
             f.write(self.filename + " is lexical correct\n")
 
-
         f.write("The Symbol Table for identifiers: \n")
         f.write("\n")
 
         identifiers = self.hashtable_identifiers.get_hashtable()
 
         for i in range(len(identifiers)):
-
             line = str(i) + " -> " + str(identifiers[i]) + "\n"
             f.write(line)
 
@@ -204,11 +202,56 @@ class SymbolTable:
                     self.error_value = 0
                     filename2 = self.filename + "_PIF.txt"
                     f1 = open(filename2, "a")
-                    f1.write("Lexical error in " + self.filename + " at line" + str(self.line_number) + "(" + str(elem) + ")\n\n")
+                    f1.write("Lexical error in " + self.filename + " at line" + str(self.line_number) + "(" + str(
+                        elem) + ")\n\n")
                     print("Lexical error in " + self.filename + " at line", self.line_number, "(", elem, ")\n")
                     f1.close()
                     return False
         return True
+
+    def print_menu(self):
+
+        while True:
+            print("\n\n\nMENU - choose an option")
+            print("1. List the set of states")
+            print("2. List the alphabet")
+            print("3. List the set of transitions")
+            print("4. List the initial state")
+            print("5. List the final state(s)")
+            print("6. Check sequence")
+
+            option = int(input("Enter the value: "))
+            print("\n \n \n")
+            if option == 1:
+                print("List the set of states")
+                print("Identifiers ", self.finiteAutomataIdentifiers.setOfStates)
+                print("Constants ", self.finiteAutomataConstants.setOfStates)
+            elif option == 2:
+                print("List the alphabet")
+                print("Identifiers ", self.finiteAutomataIdentifiers.nonTerminalSet)
+                print("Constants ", self.finiteAutomataConstants.nonTerminalSet)
+            elif option == 3:
+                print("List the set of transitions")
+                print("Identifiers ", self.finiteAutomataIdentifiers.transitions)
+                print("Constants ", self.finiteAutomataConstants.transitions)
+            elif option == 4:
+                print("List the initial state")
+                print("Identifiers ", self.finiteAutomataIdentifiers.initialState)
+                print("Constants ", self.finiteAutomataConstants.initialState)
+            elif option == 5:
+                print("List the final state(s)")
+                print("Identifiers ", self.finiteAutomataIdentifiers.finalStates)
+                print("Constants ", self.finiteAutomataConstants.finalStates)
+            else:
+                print("Check if a sequence is FA!")
+                valueToBeChecked = input("Enter the value: ")
+                print("1. Check if it is a constant integer")
+                print("2. Check if it is a identifier")
+                value = int(input("What do you want to check?"))
+                if value == 1:
+                    print("Isconstant integer: ", self.finiteAutomataConstants.checkSequence(valueToBeChecked))
+                else:
+                    print("Is identifier: ", self.finiteAutomataIdentifiers.checkSequence(valueToBeChecked))
 
 #
 # hashtable_constants_p1 = HashTable()
@@ -223,13 +266,13 @@ class SymbolTable:
 #
 # print("----------------------------------------------------------------------------------------------------")
 #
-# hashtable_constants_p3 = HashTable()
-# hashtable_identifiers_p3 = HashTable()
-# symbol_table_p3 = SymbolTable(hashtable_constants_p3, hashtable_identifiers_p3, "p3.txt")
-#
-#
+hashtable_constants_p3 = HashTable()
+hashtable_identifiers_p3 = HashTable()
+symbol_table_p3 = SymbolTable(hashtable_constants_p3, hashtable_identifiers_p3, "p3.txt")
+
+
 # print("----------------------------------------------------------------------------------------------------")
 
-hashtable_constants_p4 = HashTable()
-hashtable_identifiers_p4 = HashTable()
-symbol_table_p4 = SymbolTable(hashtable_constants_p4, hashtable_identifiers_p4, "pE.txt")
+# hashtable_constants_p4 = HashTable()
+# hashtable_identifiers_p4 = HashTable()
+# symbol_table_p4 = SymbolTable(hashtable_constants_p4, hashtable_identifiers_p4, "pE.txt")
