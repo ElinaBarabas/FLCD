@@ -58,3 +58,12 @@ SymbolTable.py
      create_pif_table(self, components_of_line) - it adds, in order, each line's component with an associated id, based on component's type (token/identifier/constant)
 
      check_elem(self, elem) - for each elem, it checks if it is correctly, from a lexical point of view; if it is not correct, it retrieves the line number where the error occurs
+
+
+FiniteAutomata.py
+
+     processFile(self): it analyzes the given file and it sets the set of states/transitions/q0/q 
+
+     checkDeterministicFinal(self): it checkes that for each pair of source & nonterminal there is only one associated value
+
+	
