@@ -1,0 +1,5 @@
+N = S A
+E = a b c d
+S
+S -> aAd
+A -> b | bA | Ac

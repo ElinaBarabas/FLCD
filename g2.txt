@@ -1,0 +1,45 @@
+program compound_stmt stmt simple_stmt struct_stmt declaration_stmt type type_ array_declaration assignment_stmt expression term factor io_stmt read_stmt write_stmt ruct_stmt if_stmt condition relation for_stmt
+
+number char string begin end for if else cwrite cread < > <= == >= <> = * + - / [ ] ( ) { } ; 
+
+program
+
+program -> "begin" compound_stmt "end"
+
+compound_stmt -> stmt | stmt compound_stmt
+
+stmt -> simple_stmt | struct_stmt
+
+simple_stmt -> declaration_stmt | assignment_stmt | io_stmt
+
+declaration_stmt -> type identifier ";"
+
+type -> type_ | array_declaration
+
+type_ -> "number" | "char" | "string"
+
+array_declaration -> type_ "[" const_int "]"
+
+assignment_stmt -> identifier "=" expression ";"
+
+expression -> expression "+" term | expression "-" term | term
+
+term -> term "*" factor | term "/" factor | factor
+
+factor -> "(" expression ")" | identifier | const_int | const_string
+
+io_stmt -> read_stmt | write_stmt
+
+read_stmt -> "cread(" identifier ");"
+
+write_stmt -> "cwrite" "(" identifier ");" | "cwrite" "(" const_int | const_string ");"
+
+struct_stmt -> compound_stmt | if_stmt | for_stmt
+
+if_stmt -> "if" condition stmt | "if" "(" condition ")" { stmt } "else" { stmt }
+
+condition -> expression relation expression
+
+relation -> "<" | "<=" | "==" | "<>" | ">=" | ">"
+
+for_stmt -> "for" "(" assignment_stmt ";" condition ";" expression ")" "{" stmt "}"

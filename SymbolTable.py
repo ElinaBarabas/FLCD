@@ -268,7 +268,7 @@ class SymbolTable:
 #
 hashtable_constants_p3 = HashTable()
 hashtable_identifiers_p3 = HashTable()
-symbol_table_p3 = SymbolTable(hashtable_constants_p3, hashtable_identifiers_p3, "p3.txt")
+symbol_table_p3 = SymbolTable(hashtable_constants_p3, hashtable_identifiers_p3, "pE.txt")
 
 
 # print("----------------------------------------------------------------------------------------------------")
