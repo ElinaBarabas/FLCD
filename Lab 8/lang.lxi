@@ -17,18 +17,17 @@ ID 		[a-zA-Z][a-zA-Z0-9_]{0,7}
 %%
 
 and {printf("Reserved word: %s\n", yytext);}
-array	{printf( "Reserved word: %s\n", yytext);}
-else	{printf( "Reserved word: %s\n", yytext);}
-for	{printf( "Reserved word: %s\n", yytext);}
-fun	{printf( "Reserved word: %s\n", yytext);}
-main	{printf( "Reserved word: %s\n", yytext);}
-if	{printf( "Reserved word: %s\n", yytext);}
-int	{printf( "Reserved word: %s\n", yytext);}
-or	{printf( "Reserved word: %s\n", yytext);}
-read	{printf( "Reserved word: %s\n", yytext);}
-println	{printf( "Reserved word: %s\n", yytext);}
-string	{printf( "Reserved word: %s\n", yytext);}
-while	{printf( "Reserved word: %s\n", yytext);}
+ARRAY	{printf( "Reserved word: %s\n", yytext);}
+ELSE	{printf( "Reserved word: %s\n", yytext);}
+FOR	{printf( "Reserved word: %s\n", yytext);}
+IF	{printf( "Reserved word: %s\n", yytext);}
+INT	{printf( "Reserved word: %s\n", yytext);}
+OR	{printf( "Reserved word: %s\n", yytext);}
+READ	{printf( "Reserved word: %s\n", yytext);}
+INPUT	{printf( "Reserved word: %s\n", yytext);}
+PRINT	{printf( "Reserved word: %s\n", yytext);}
+STRING	{printf( "Reserved word: %s\n", yytext);}
+WHILE	{printf( "Reserved word: %s\n", yytext);}
 
 {ID}	{printf( "Identifier: %s\n", yytext );}
 
@@ -37,7 +36,7 @@ while	{printf( "Reserved word: %s\n", yytext);}
 ":"	{printf( "Separator: %s\n", yytext );}
 ";"	{printf( "Separator: %s\n", yytext );}
 ","	{printf( "Separator: %s\n", yytext );}
-".$"	{printf( "Separator: %s\n", yytext );}
+"."	{printf( "Separator: %s\n", yytext );}
 "{"	{printf( "Separator: %s\n", yytext );}
 "}"	{printf( "Separator: %s\n", yytext );}
 "("	{printf( "Separator: %s\n", yytext );}
@@ -56,6 +55,7 @@ while	{printf( "Reserved word: %s\n", yytext);}
 "=="	{printf( "Operator: %s\n", yytext );}
 "="	{printf( "Separator: %s\n", yytext );}
 "!"	{printf( "Operator: %s\n", yytext );}
+"%"	{printf( "Operator: %s\n", yytext );}
 
 
 
